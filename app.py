@@ -3175,11 +3175,21 @@ if start_btn:
     st.session_state.stream_active = True
     
     # Initialize camera workers
+    # Initialize camera workers
+    # For Streamlit Cloud/Demo: Use video files instead of physical cameras (which aren't available)
+    sample_video = "examples/videos/thermal_sample.mp4"
+    
+    # Check if sample video exists, else we might fail
+    if not os.path.exists(sample_video):
+        # Create a dummy file or handle gracefully? 
+        # For now, let's assume it exists or VideoWorker will handle it.
+        pass
+
     camera_configs = [
-        {"id": 0, "source": "0", "name": "Day-1"},
-        {"id": 1, "source": "1", "name": "Day-2"},
-        {"id": 2, "source": "examples/videos/thermal_sample.mp4", "name": "Thermal-1"},
-        {"id": 3, "source": "examples/videos/thermal_sample.mp4", "name": "Thermal-2"},
+        {"id": 0, "source": sample_video, "name": "Day-1"},
+        {"id": 1, "source": sample_video, "name": "Day-2"},
+        {"id": 2, "source": sample_video, "name": "Thermal-1"},
+        {"id": 3, "source": sample_video, "name": "Thermal-2"},
     ]
     
     for cam_cfg in camera_configs:
