@@ -8,7 +8,10 @@
 
 > **Real-time, defence-grade AI system for multi-sensor object detection, tracking, and visibility enhancement on NVIDIA Jetson Orin AGX.**
 
-![Defence AI Banner](docs/assets/banner.png)
+
+<img width="1278" height="1075" alt="image" src="https://github.com/user-attachments/assets/7e210829-4c29-4d6d-874c-489715505992" />
+<img width="1276" height="1285" alt="image" src="https://github.com/user-attachments/assets/db767b3e-6007-4206-a22a-3fa890682f4c" />
+<img width="1272" height="950" alt="image" src="https://github.com/user-attachments/assets/e2cd0122-9e7e-4ff2-a15d-07f6e2fbfda6" />
 
 ---
 
@@ -41,7 +44,17 @@ Optimized for the **NVIDIA Jetson Orin AGX**, this system delivers real-time inf
 *   **Tactical Dashboard:** Interactive Streamlit UI for operators.
 
 ---
-
+## 🌐🎬 Live Demo
+🚀 **Try it now:**
+- **Streamlit Profile** - https://share.streamlit.io/user/ratnesh-181998
+- **Project Demo** - https://defence-ai-multisensor-surveillance-yolov8-vusybzt9bohpykhzkq3.streamlit.app/
+-Frontend: Streamlit + Custom CSS
+-Detection: YOLOv8 + PyTorch + TensorRT
+-Tracking: DeepSORT + Kalman Filter
+-Processing: OpenCV + NumPy
+-Enhancement: CLAHE + Dark Channel Prior
+-Hardware: NVIDIA Jetson Orin AGX
+---
 ## ✨ Key Features
 
 ### 🔍 Detection & Tracking
@@ -284,7 +297,7 @@ docker run --runtime nvidia --network host --privileged defence-ai:jetson
 - 📱 **Phone**: +91-947XXXXX46
 
 ### Project Links
-- 🌐 **Live Demo**: [Streamlit App](https://universal-pdf-rag-chatbot-mhsi4ygebe6hmq3ij6d665.streamlit.app/)
+- 🌐 **Live Demo**: [Streamlit App](https://defence-ai-multisensor-surveillance-yolov8-vusybzt9bohpykhzkq3.streamlit.app/)
 - 📖 **Documentation**: [GitHub Wiki](https://github.com/Ratnesh-181998/Defence-AI-Multisensor-Surveillance-YOLOv8/wiki)
 - 🐛 **Issue Tracker**: [GitHub Issues](https://github.com/Ratnesh-181998/Defence-AI-Multisensor-Surveillance-YOLOv8/issues)
 
