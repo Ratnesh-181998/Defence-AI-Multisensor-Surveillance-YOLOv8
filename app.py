@@ -460,6 +460,12 @@ with tab_control:
                 else:
                     st.error(f"✗ {cam}")
         
+        input_source = st.radio(
+            "Input Source Protocol:",
+            ["Simulation Mode (Cloud/Demo)", "Device HW (Local Webcam)"],
+            help="Select 'Simulation' for Streamlit Cloud. Select 'Device HW' if running locally with a webcam connected."
+        )
+
         st.caption("💡 Tip: Use at least one Day + one Thermal camera for optimal fusion")
         st.markdown('</div>', unsafe_allow_html=True)
         
@@ -3174,23 +3180,26 @@ if start_btn:
     log("Starting camera streams...", "INFO")
     st.session_state.stream_active = True
     
-    # Initialize camera workers
-    # Initialize camera workers
-    # For Streamlit Cloud/Demo: Use video files instead of physical cameras (which aren't available)
-    sample_video = "examples/videos/thermal_sample.mp4"
-    
-    # Check if sample video exists, else we might fail
-    if not os.path.exists(sample_video):
-        # Create a dummy file or handle gracefully? 
-        # For now, let's assume it exists or VideoWorker will handle it.
-        pass
-
-    camera_configs = [
-        {"id": 0, "source": sample_video, "name": "Day-1"},
-        {"id": 1, "source": sample_video, "name": "Day-2"},
-        {"id": 2, "source": sample_video, "name": "Thermal-1"},
-        {"id": 3, "source": sample_video, "name": "Thermal-2"},
-    ]
+    # Determine sources based on user selection
+    if input_source == "Device HW (Local Webcam)":
+        # Use physical devices
+        camera_configs = [
+            {"id": 0, "source": "0", "name": "Day-1"},
+            {"id": 1, "source": "1", "name": "Day-2"}, # Fallback to 0 if 1 not present usually handled in VideoWorker or user knows
+            {"id": 2, "source": "examples/videos/thermal_sample.mp4", "name": "Thermal-1"}, # Thermal usually simulated unless specialized HW
+            {"id": 3, "source": "examples/videos/thermal_sample.mp4", "name": "Thermal-2"},
+        ]
+        # Allow Day-2 to fallback to video if webcam 1 fails? For now keep simple.
+        # Note: VideoWorker attempts to parse integer string "0" as int(0)
+    else:
+        # Simulation Mode
+        sample_video = "examples/videos/thermal_sample.mp4"
+        camera_configs = [
+            {"id": 0, "source": sample_video, "name": "Day-1"},
+            {"id": 1, "source": sample_video, "name": "Day-2"},
+            {"id": 2, "source": sample_video, "name": "Thermal-1"},
+            {"id": 3, "source": sample_video, "name": "Thermal-2"},
+        ]
     
     for cam_cfg in camera_configs:
         if cam_cfg["name"] in selected_cameras:
