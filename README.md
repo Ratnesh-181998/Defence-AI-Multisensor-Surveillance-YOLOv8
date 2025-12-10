@@ -38,6 +38,12 @@
 
 Optimized for the **NVIDIA Jetson Orin AGX**, this system delivers real-time inference (<500ms latency) even in degraded visual environments (fog, smoke, low light) thanks to its proprietary **Drishyak** visibility enhancement module.
 
+<img width="2806" height="1440" alt="image" src="https://github.com/user-attachments/assets/89d56afd-bd65-4da3-ab3a-b0fb497b5682" />
+<img width="2794" height="1445" alt="image" src="https://github.com/user-attachments/assets/39527480-322a-48b9-b32b-2b76f4aeb572" />
+<img width="2827" height="1441" alt="image" src="https://github.com/user-attachments/assets/005bf75d-7828-4d25-8821-7be7f8054d8b" />
+<img width="2811" height="1311" alt="image" src="https://github.com/user-attachments/assets/d702d0cf-c6c7-4487-ad4f-c686678fe399" />
+
+
 ### 🎥 Demo Capability
 *   **Sensor Fusion:** Simultaneous processing of multiple GigE streams.
 *   **Edge AI:** Full on-device processing with no cloud dependency.
@@ -92,8 +98,12 @@ The "Heart" of the system. Operators use this tab to configure signal sources (W
 
 **Tech Used:** `st.session_state` for state management, `st.file_uploader`, `threading` control logic.
 
-![Control Panel Screenshot](docs/screenshots/control_panel.png)
-*(Placeholder: Upload screenshot of Control Panel here)*
+<img width="2826" height="1388" alt="image" src="https://github.com/user-attachments/assets/2b1ed01a-0573-4a7e-ab25-956c7477675d" />
+<img width="2834" height="1441" alt="image" src="https://github.com/user-attachments/assets/72a33f51-a4e2-4667-bab3-5e6a05031c1a" />
+<img width="2821" height="1439" alt="image" src="https://github.com/user-attachments/assets/dde2917c-a133-41c6-ad2d-14402b7a8e15" />
+<img width="2819" height="1477" alt="image" src="https://github.com/user-attachments/assets/edd977c2-18eb-48c6-8cf7-7275321f9e12" />
+<img width="2787" height="1439" alt="image" src="https://github.com/user-attachments/assets/6b21e90f-54b7-4628-afaf-c9ab8e45fe2d" />
+
 
 ### 2. 📹 Live Streams (Surveillance Dashboard)
 **Functionality:**
@@ -104,8 +114,14 @@ Real-time visualization of all active sensors.
 
 **Tech Used:** `OpenCV (cv2)` for frame manipulation, `PIL` for image rendering, `Queue` for threaded video buffering to ensure non-blocking UI.
 
-![Live Streams Screenshot](docs/screenshots/live_streams.png)
-*(Placeholder: Upload screenshot of 4-camera grid view here)*
+<img width="2781" height="1409" alt="image" src="https://github.com/user-attachments/assets/ab9c6626-c584-4568-8c41-4553f4d6181e" />
+<img width="2834" height="1447" alt="image" src="https://github.com/user-attachments/assets/73912467-17f9-4cf6-ac33-fa5bf3584c01" />
+<img width="2837" height="1448" alt="image" src="https://github.com/user-attachments/assets/24c23b14-9199-424d-9654-0ec3154fd9ac" />
+<img width="2832" height="1435" alt="image" src="https://github.com/user-attachments/assets/8e1edfcf-ae41-4458-b4ee-b74f3865e9e5" />
+<img width="2768" height="1452" alt="image" src="https://github.com/user-attachments/assets/c4072176-47a6-4f35-b09b-3b07009b15d5" />
+<img width="2777" height="1487" alt="image" src="https://github.com/user-attachments/assets/269942ad-00c6-485b-b44c-6894811efdd2" />
+<img width="2815" height="1452" alt="image" src="https://github.com/user-attachments/assets/7a88ca62-1a76-49bc-8a0d-0bc9332381a3" />
+
 
 ### 3. 📊 Analytics Dashboard
 **Functionality:**
@@ -116,8 +132,11 @@ A comprehensive data suite providing operational insights.
 
 **Tech Used:** `Pandas` for data aggregation, `Streamlit Native Charts` (Altair) for interactive visualization, `Psutil` for hardware monitoring.
 
-![Analytics Screenshot](docs/screenshots/analytics.png)
-*(Placeholder: Upload screenshot of graphs and metrics)*
+<img width="2817" height="1366" alt="image" src="https://github.com/user-attachments/assets/1cfc2959-dc34-4ae0-90c6-8946e0cc5c90" />
+<img width="2789" height="1443" alt="image" src="https://github.com/user-attachments/assets/58b62bbc-c647-4494-97b0-02780727212b" />
+<img width="2813" height="1425" alt="image" src="https://github.com/user-attachments/assets/6e9daa1c-9cff-40eb-b4e8-5ee98b2b75b5" />
+<img width="2793" height="1430" alt="image" src="https://github.com/user-attachments/assets/69f98e05-9b26-4f00-b331-312646a63da7" />
+
 
 ### 4. ⚙️ Advanced Model Settings
 **Functionality:**
@@ -125,6 +144,13 @@ Fine-tune the AI "Brain" without restarting the system.
 - **Confidence Threshold:** Slider to filter weak detections (0.0 - 1.0).
 - **NMS Threshold:** Adjustment for Non-Maximum Suppression to remove duplicate boxes.
 - **Tracking Parameters:** Max lost frames and IOU thresholds for DeepSORT.
+<img width="2818" height="1478" alt="image" src="https://github.com/user-attachments/assets/7858de3e-b11f-4b3a-b3c4-62d5e910c654" />
+<img width="2805" height="1436" alt="image" src="https://github.com/user-attachments/assets/5c5ff112-5e5f-47bf-b15d-293081f9fec7" />
+<img width="2829" height="1413" alt="image" src="https://github.com/user-attachments/assets/99edd11c-1719-4d36-a6a4-c008f58de174" />
+<img width="2828" height="1442" alt="image" src="https://github.com/user-attachments/assets/dfa02903-9548-446e-a345-741ca7959864" />
+<img width="2839" height="1399" alt="image" src="https://github.com/user-attachments/assets/753e5dc8-16bf-4525-b0b4-f96f65d80677" />
+<img width="2795" height="1441" alt="image" src="https://github.com/user-attachments/assets/8978998b-97aa-4631-b7ff-cc60eabafb07" />
+<img width="2879" height="1445" alt="image" src="https://github.com/user-attachments/assets/b5a9449b-a6b0-4b3a-8bf4-2eb5769c93fb" />
 
 **Tech Used:** Dynamic parameter injection into running inference threads.
 
@@ -135,7 +161,31 @@ Transparent documentation for engineers.
 - **Dependency Checker:** Live status of installed libraries (PyTorch/CUDA versions).
 - **Reasoning:** "Why we chose this stack" comparison tables.
 
+<img width="2792" height="1438" alt="image" src="https://github.com/user-attachments/assets/fe31e322-ef0b-41de-82a1-5e593b8b4209" />
+<img width="2547" height="1423" alt="image" src="https://github.com/user-attachments/assets/dc784f74-1d62-4edc-91bc-c69aee2f8a27" />
+<img width="2816" height="1470" alt="image" src="https://github.com/user-attachments/assets/ec375d61-5601-4158-b9d3-c18d07043e86" />
+<img width="2810" height="1429" alt="image" src="https://github.com/user-attachments/assets/95fbad2b-d401-4b8b-ab4d-315143c24c4d" />
+
+<img width="2806" height="1440" alt="image" src="https://github.com/user-attachments/assets/89d56afd-bd65-4da3-ab3a-b0fb497b5682" />
+<img width="2794" height="1445" alt="image" src="https://github.com/user-attachments/assets/39527480-322a-48b9-b32b-2b76f4aeb572" />
+<img width="2819" height="1386" alt="image" src="https://github.com/user-attachments/assets/b602a52f-2bac-409f-b1ca-0f9f01863428" />
+<img width="2798" height="1467" alt="image" src="https://github.com/user-attachments/assets/28ec8730-fcf0-4bf0-877e-00e9d3e45fe1" />
+<img width="2799" height="1387" alt="image" src="https://github.com/user-attachments/assets/6488cad8-b3c9-4f15-824b-e33e46bb17cb" />
+<img width="2805" height="1429" alt="image" src="https://github.com/user-attachments/assets/0a3be14b-7602-4beb-8a08-6647e2856659" />
+<img width="2804" height="1483" alt="image" src="https://github.com/user-attachments/assets/3d6592e3-6f5e-42d5-af77-b06100a1b4b6" />
+
 **Tech Used:** `Graphviz` for diagrams, `json` for stack exports.
+
+<img width="2799" height="1454" alt="image" src="https://github.com/user-attachments/assets/aec8c771-b56a-46a7-a966-258e22955b77" />
+<img width="2759" height="1420" alt="image" src="https://github.com/user-attachments/assets/eac4f62b-cf62-4aa2-92ae-3630cca99316" />
+<img width="2609" height="1458" alt="image" src="https://github.com/user-attachments/assets/8e7d055b-9290-447a-8c5a-cc9bdd64e048" />
+<img width="2789" height="1426" alt="image" src="https://github.com/user-attachments/assets/e039b67f-304c-411f-91e7-7c8013c5c88b" />
+<img width="2796" height="1472" alt="image" src="https://github.com/user-attachments/assets/e02c0a0c-4f28-4d31-b44f-b9aaba4ce7a6" />
+<img width="2782" height="1359" alt="image" src="https://github.com/user-attachments/assets/733de45e-6df6-4ca2-9eae-85d47d76dcc3" />
+<img width="2769" height="1474" alt="image" src="https://github.com/user-attachments/assets/226badea-d688-4cb3-89b4-77e85dbab3ab" />
+<img width="2778" height="1284" alt="image" src="https://github.com/user-attachments/assets/f2e7f1fe-e950-4abf-adc9-d6fd16559f8b" />
+<img width="2342" height="1375" alt="image" src="https://github.com/user-attachments/assets/ec0099d9-ea0d-4a9c-a583-c12c24d26b4e" />
+<img width="2786" height="1429" alt="image" src="https://github.com/user-attachments/assets/f52171ac-959a-45f9-b761-17858db413cd" />
 
 ### 6. 📝 System Logs & Export
 **Functionality:**
@@ -146,8 +196,9 @@ A robust audit trail for mission debriefing.
 
 **Tech Used:** Custom logging handler, `Pandas` for CSV export, `st.text_area` for console view.
 
-![Logs Screenshot](docs/screenshots/logs.png)
-*(Placeholder: Upload screenshot of Log Viewer)*
+<img width="2809" height="1452" alt="image" src="https://github.com/user-attachments/assets/312d4e2c-7b05-40e9-bfc8-a9666fb3aa02" />
+<img width="2786" height="1493" alt="image" src="https://github.com/user-attachments/assets/7f4629f4-2f90-41c0-85c8-bb0e81e039ab" />
+<img width="2814" height="1440" alt="image" src="https://github.com/user-attachments/assets/c1e6bef4-adfc-43d7-b83d-c53eba1c7ab8" />
 
 ---
 
