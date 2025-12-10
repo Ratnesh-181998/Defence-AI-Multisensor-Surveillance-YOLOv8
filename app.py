@@ -3286,38 +3286,49 @@ if uploaded_model is not None:
 # ============================================================================
 
 if st.session_state.stream_active and st.session_state.workers:
-    # Process frames from all cameras
-    frame_start = time.time()
-    
-    for idx, cam_name in enumerate(["Day-1", "Day-2", "Thermal-1", "Thermal-2"]):
-        if cam_name in st.session_state.queues:
-            try:
-                frame = st.session_state.queues[cam_name].get_nowait()
-            except queue.Empty:
-                frame = None
-        else:
-            frame = None
+    # Process frames using a batch loop to reduce UI blinking (re-running script less often)
+    # We process 10 frames in a loop before triggering a Streamlit rerun
+    for _ in range(10):
+        # Check if we should stop (if user clicked stop, it won't register until rerun, 
+        # so this loop latency determines stop responsiveness)
+        if not st.session_state.stream_active:
+            break
+
+        frame_start = time.time()
         
-        if frame is None:
-            # Create placeholder frame
-            frame = np.zeros((360, 640, 3), dtype=np.uint8)
-            cv2.putText(frame, f"No stream: {cam_name}", (20, 180), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
-        else:
+        for idx, cam_name in enumerate(["Day-1", "Day-2", "Thermal-1", "Thermal-2"]):
+            # Only process if this camera is selected/active
+            if cam_name not in st.session_state.queues:
+                continue
+
+            try:
+                # Non-blocking get with timeout to avoid freezing whole loop
+                try:
+                    frame = st.session_state.queues[cam_name].get_nowait()
+                except queue.Empty:
+                    frame = None
+            except Exception:
+                frame = None
+            
+            if frame is None:
+                continue # Skip processing if no frame
+            
             # Apply enhancement if enabled
             if enable_enhancement:
                 try:
                     frame = clahe_enhance(frame)
                 except Exception as e:
-                    log(f"Enhancement error: {e}", "ERROR")
+                    # log(f"Enhancement error: {e}", "ERROR") # Reduce log spam in loop
+                    pass
             
-            # Run inference
+            # Run inference (only on first camera or specific logic to save compute?)
+            # For demo, run on all active frames
             detections = []
             if st.session_state.engine:
                 try:
                     detections = st.session_state.engine.infer(frame)
                 except Exception as e:
-                    log(f"Inference error: {e}", "ERROR")
+                    pass
             
             # Apply tracking if enabled
             if enable_tracking and detections:
@@ -3337,93 +3348,62 @@ if st.session_state.stream_active and st.session_state.workers:
                         cv2.putText(frame, f"ID:{obj_id}", (centroid[0]+10, centroid[1]),
                                   cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
                     
-                    st.session_state.detection_count += len(detections)
-                    st.session_state.tracking_count = len(tracked_objects)
+                    # Update stats (only count once per frame set to avoid inflating)
+                    # st.session_state.detection_count += len(detections) 
                 except Exception as e:
-                    log(f"Tracking error: {e}", "ERROR")
-        
-        # =========================================================
-        # RECORDING SYSTEM
-        # =========================================================
-        if st.session_state.recording_active:
-            # Initialize recorder for this camera if not exists
-            if cam_name not in st.session_state.recorders:
-                try:
-                    record_dir = Path("recordings")
-                    record_dir.mkdir(exist_ok=True)
-                    
-                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                    filename = record_dir / f"{cam_name}_{timestamp}.mp4"
-                    
-                    # Setup VideoWriter
-                    h, w = frame.shape[:2]
-                    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-                    writer = cv2.VideoWriter(str(filename), fourcc, 30.0, (w, h))
-                    
-                    if writer.isOpened():
-                        st.session_state.recorders[cam_name] = writer
-                        # log(f"Started recording: {filename.name}", "INFO") # Avoid log spam
-                    else:
-                        log(f"Failed to start recording for {cam_name}", "ERROR")
-                        
-                except Exception as e:
-                    log(f"Recording init error: {e}", "ERROR")
+                    pass
             
-            # Write frame to recorder
-            if cam_name in st.session_state.recorders:
+            # Recording Logic
+            if st.session_state.recording_active:
+                if cam_name not in st.session_state.recorders:
+                    try:
+                        record_dir = Path("recordings")
+                        record_dir.mkdir(exist_ok=True)
+                        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                        filename = record_dir / f"{cam_name}_{timestamp}.mp4"
+                        h, w = frame.shape[:2]
+                        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+                        writer = cv2.VideoWriter(str(filename), fourcc, 30.0, (w, h))
+                        if writer.isOpened():
+                            st.session_state.recorders[cam_name] = writer
+                    except:
+                        pass
+                
+                if cam_name in st.session_state.recorders:
+                    try:
+                        st.session_state.recorders[cam_name].write(frame)
+                    except:
+                        pass
+            else:
+                # Stop recording
+                 if cam_name in st.session_state.recorders:
+                    try:
+                        st.session_state.recorders[cam_name].release()
+                        del st.session_state.recorders[cam_name]
+                    except:
+                        pass
+
+            # Update Display
+            if idx < len(camera_placeholders):
+                # Ensure we are not updating a placeholder that doesn't exist
                 try:
-                    st.session_state.recorders[cam_name].write(frame)
-                except Exception as e:
-                    log(f"Write error {cam_name}: {e}", "ERROR")
+                   frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                   camera_placeholders[idx].image(frame_rgb, caption=cam_name, use_container_width=True)
+                except:
+                    pass
         
-        else:
-            # Cleanup: Stop recording if active recorders exist
-            if cam_name in st.session_state.recorders:
-                try:
-                    st.session_state.recorders[cam_name].release()
-                    del st.session_state.recorders[cam_name]
-                    # log(f"Saved recording for {cam_name}", "INFO")
-                except Exception as e:
-                    log(f"Stop error {cam_name}: {e}", "ERROR")
+        # FPS Control
+        frame_time = time.time() - frame_start
+        if frame_time > 0:
+            current_fps = 1.0 / frame_time
+            st.session_state.fps_history.append(current_fps)
+            if len(st.session_state.fps_history) > 100:
+                st.session_state.fps_history = st.session_state.fps_history[-100:]
+        
+        # Sleep to maintain target FPS
+        time.sleep(max(0.01, 1.0 / fps_target))
 
-        # =========================================================
-        # SNAPSHOT SYSTEM
-        # =========================================================
-        if st.session_state.snapshot_requested:
-            try:
-                snap_dir = Path("snapshots")
-                snap_dir.mkdir(exist_ok=True)
-                
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                filename = snap_dir / f"snap_{cam_name}_{timestamp}.jpg"
-                
-                # Save frame
-                cv2.imwrite(str(filename), frame)
-                # log(f"Snapshot saved: {filename.name}", "INFO") 
-            except Exception as e:
-                log(f"Snapshot error {cam_name}: {e}", "ERROR")
-
-        # Display frame
-        if idx < len(camera_placeholders):
-            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            camera_placeholders[idx].image(frame_rgb, caption=cam_name, use_container_width=True)
-    
-    
-    # Handle snapshot completion
-    if st.session_state.snapshot_requested:
-        st.session_state.snapshot_requested = False
-        st.toast("✅ Snapshots saved to /snapshots folder")
-        log("Snapshots captured for all active cameras", "INFO")
-
-    # Calculate FPS
-    frame_time = time.time() - frame_start
-    fps = 1.0 / frame_time if frame_time > 0 else 0
-    st.session_state.fps_history.append(fps)
-    if len(st.session_state.fps_history) > 100:
-        st.session_state.fps_history = st.session_state.fps_history[-100:]
-    
-    # Auto-refresh
-    time.sleep(1.0 / fps_target)
+    # After batch loop, rerun to handle events
     st.rerun()
 
 # ============================================================================
