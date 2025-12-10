@@ -1,0 +1,76 @@
+Interview-Ready Summary of the Role
+
+This role focuses on building defence-grade, real-time AI systems for object detection, tracking, and visibility enhancement using Day + Thermal cameras on Jetson Orin hardware. The work is fully hands-on and deployed in real defence field environments.
+
+How I would explain the work in an interview
+1. Building Real-Time AI Systems
+
+I will be responsible for developing real-time object classification and tracking pipelines with strict latency requirements (under 500 ms).
+This includes optimizing models using TensorRT, ONNX, and Jetson-specific acceleration.
+
+2. Visibility Enhancement (Drishyak)
+
+I will work on an AI-based visibility enhancement module for fog, smoke, low light, using
+techniques like CLAHE, local tone mapping, and deep-learning-based enhancement.
+
+3. Multi-Camera, Multi-Sensor Integration
+
+The system involves 4× GigE cameras (Day + IR).
+I will design synchronized multi-camera pipelines, sensor fusion, and 24×7 stable inference.
+
+4. Full Training Pipeline
+
+I'm expected to build end-to-end:
+
+Dataset creation & annotation workflows
+
+Training pipelines for YOLO/Detectron/Transformer models
+
+Synthetic dataset generation for IR/thermal scenarios
+
+mAP tuning, augmentation, and class balancing
+
+5. Tracking & Kinematics
+
+I will implement tracking using SORT / DeepSORT / CentroidTracker and integrate
+motion & kinematics logic for:
+
+Azimuth / elevation calculations
+
+Angular velocity
+
+Pixel ↔ degree mapping
+
+Trajectory estimation
+
+6. Embedded & Real-Time Constraints
+
+I will deploy everything on Jetson Orin AGX, optimized for:
+
+Low latency
+
+Power efficiency
+
+Continuous operation in field conditions
+
+Some CUDA optimization knowledge is a bonus.
+
+7. Defence-Grade Documentation
+
+I’ll follow a DO-178C style documentation process:
+
+SRS, SDD
+
+Test plans
+
+Acceptance test procedures
+
+Field trial reports
+
+8. Field Trials
+
+This role includes on-site testing and reviews with defence teams, evaluating model performance in real-world conditions.
+
+One-Line Pitch for HR/Manager
+
+“This role is about building end-to-end, defence-grade, real-time AI systems on Jetson Orin—covering datasets, training, optimization, multi-sensor pipelines, tracking, visibility enhancement, and field deployment.”

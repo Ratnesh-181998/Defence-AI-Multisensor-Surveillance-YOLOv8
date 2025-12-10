@@ -1,0 +1,17 @@
+timestamp,level,message
+16:57:01,INFO,System ENGAGED - Processing started
+16:57:04,INFO,Starting camera streams...
+16:57:04,SUCCESS,✅ Started Day-1
+16:57:04,SUCCESS,✅ Started Day-2
+16:57:04,SUCCESS,✅ Started Thermal-1
+16:57:04,SUCCESS,✅ Started Thermal-2
+16:57:40,INFO,Recording started
+17:03:42,INFO,Recording stopped and saved
+17:04:06,INFO,🚀 Initiating training sequence...
+17:04:09,INFO,Export to TensorRT initiated
+17:20:44,WARNING,System ABORTED - Processing stopped
+17:20:47,INFO,Stopping camera streams...
+17:20:47,INFO,⏹️ Stopped Day-1
+17:20:47,INFO,⏹️ Stopped Day-2
+17:20:47,INFO,⏹️ Stopped Thermal-1
+17:20:47,INFO,⏹️ Stopped Thermal-2

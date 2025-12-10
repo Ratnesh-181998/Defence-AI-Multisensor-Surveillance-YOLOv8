@@ -1,0 +1,3 @@
+timestamp,level,message
+16:18:48,INFO,Analytics CSV exported
+16:19:04,INFO,Analytics report exported to exports\analytics_report_2025-12-10_16-19-04.txt

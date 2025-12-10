@@ -1,0 +1,7 @@
+names:
+  0: person
+  1: vehicle
+  2: weapon
+path: C:\Users\rattu\Downloads\Defence AI Streamlit Project Using Computer Vision\data\sample_dataset
+train: images/train
+val: images/val

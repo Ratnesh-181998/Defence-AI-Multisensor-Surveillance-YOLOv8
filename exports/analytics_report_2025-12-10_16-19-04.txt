@@ -1,0 +1,11 @@
+DEFENCE AI ANALYTICS REPORT
+Generated: 2025-12-10_16-19-04
+========================================
+
+Total Detections: 0
+Tracked Objects: 0
+
+SYSTEM HEALTH:
+CPU: 59.8%
+RAM: 93.1%
+GPU: None%

@@ -1,0 +1,38 @@
+# YOLOv8 Training Configuration
+
+# Model Settings
+model:
+  name: "yolov8m"           # Base model (n, s, m, l, x)
+  pretrained: true          # Use COCO pretrained weights
+  input_size: 640          # Image size
+
+# Training Hyperparameters
+train:
+  epochs: 100
+  batch_size: 16
+  optimizer: "SGD"         # SGD or Adam
+  lr0: 0.01                # Initial learning rate
+  lrf: 0.01                # Final learning rate fraction
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  patience: 50             # Early stopping patience
+
+# Augmentation Settings (Defence/Thermal focus)
+augmentation:
+  hsv_h: 0.015             # Hue augmentation
+  hsv_s: 0.7               # Saturation augmentation
+  hsv_v: 0.4               # Value augmentation
+  degrees: 0.0             # Rotation
+  translate: 0.1           # Translation
+  scale: 0.5               # Scale
+  shear: 0.0               # Shear
+  perspective: 0.0
+  flipud: 0.0              # Flip up-down
+  fliplr: 0.5              # Flip left-right
+  mosaic: 1.0              # Mosaic (very important for small objects)
+  mixup: 0.0               # MixUp
+
+# System resources
+device: 0                  # GPU device index (or 'cpu')
+workers: 8                 # Dataloader workers

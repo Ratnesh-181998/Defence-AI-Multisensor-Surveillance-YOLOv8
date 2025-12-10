@@ -1,0 +1,71 @@
+Refined & Professional Version of the Role Description
+
+About the Role
+You will be contributing to the development of next-generation defence-grade AI/Computer Vision systems designed for real-time object classification, tracking, and visibility enhancement using Day + Thermal (IR) cameras on NVIDIA Jetson Orin hardware.
+
+This role is ideal for someone passionate about AI/ML, computer vision, embedded systems, UAV/defence technologies, and building systems that are field-tested and deployed in real defence environments.
+
+What You Will Build
+
+Real-Time Object Classification System Software (OCSS)
+
+Drishyak – AI-driven fog/smoke visibility enhancement module
+
+24×7 multi-camera, multi-sensor inference pipelines
+
+Jetson-optimized low-latency pipelines (<500 ms end-to-end)
+
+YOLO training pipeline + end-to-end dataset/annotation workflow
+
+Defence-grade engineering documentation (SRS, SDD, Test Plans, ATP)
+
+Key Responsibilities
+
+Develop full dataset → training → deployment pipelines
+
+Train and optimize YOLO/Detectron/Transformer-based detectors
+
+Create synthetic datasets and advanced augmentation for Day & IR sensors
+
+Implement real-time tracking using motion/kinematics models
+
+Build and integrate multi-camera pipelines (4× GigE cameras)
+
+Deploy models on Jetson Orin AGX with TensorRT / ONNX optimization
+
+Design and develop UI for real-time operator console (live video, logs, health monitoring)
+
+Write defence-grade documentation following DO-178C-style rigor
+
+Participate in on-site field testing, reviews, and performance trials
+
+Required Technical Skills
+AI / Machine Learning
+
+PyTorch, YOLOv5/YOLOv8, ONNX, TensorRT
+
+mAP optimization, class balancing
+
+Data augmentation + synthetic dataset generation
+
+Computer Vision
+
+OpenCV, GStreamer
+
+CLAHE, DRC, fog/smoke removal techniques
+
+Object tracking: CentroidTracker, SORT, DeepSORT
+
+Embedded & Real-Time Systems
+
+Experience with Jetson Orin / Xavier / Nano
+
+Building <500 ms low-latency pipelines
+
+Basic CUDA optimization (bonus)
+
+Mathematics / Kinematics
+
+Geometry, azimuth/elevation, angular velocity
+
+Pixel ↔ degree mapping, trajectory estimation
