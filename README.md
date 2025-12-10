@@ -66,6 +66,78 @@ Optimized for the **NVIDIA Jetson Orin AGX**, this system delivers real-time inf
 
 ---
 
+## 🖥️ User Interface Experience
+
+The application features a professional, tab-based command center designed for ease of use by defence operators. Below is a detailed breakdown of each interface module:
+
+### 1. ⚙️ Control Panel (Command Center)
+**Functionality:**
+The "Heart" of the system. Operators use this tab to configure signal sources (Webcam vs Simulation), manage the processing sequence (ENGAGE/ABORT), and load AI models.
+- **Signal Sources:** Toggle individual camera feeds (Day/Thermal).
+- **Sequence Control:** One-click system activation with visual status indicators.
+- **AI Core:** Drag-and-drop interface to load custom YOLOv8 `.pt` or TensorRT `.trt` models.
+
+**Tech Used:** `st.session_state` for state management, `st.file_uploader`, `threading` control logic.
+
+![Control Panel Screenshot](docs/screenshots/control_panel.png)
+*(Placeholder: Upload screenshot of Control Panel here)*
+
+### 2. 📹 Live Streams (Surveillance Dashboard)
+**Functionality:**
+Real-time visualization of all active sensors.
+- **View Modes:** 2x2 Grid, Single Camera Focus, or Split (Day/Thermal).
+- **Overlays:** Bounding boxes, confidence scores, and object IDs (DeepSORT).
+- **Enhancement:** Real-time visibility improvement for fog/smoke.
+
+**Tech Used:** `OpenCV (cv2)` for frame manipulation, `PIL` for image rendering, `Queue` for threaded video buffering to ensure non-blocking UI.
+
+![Live Streams Screenshot](docs/screenshots/live_streams.png)
+*(Placeholder: Upload screenshot of 4-camera grid view here)*
+
+### 3. 📊 Analytics Dashboard
+**Functionality:**
+A comprehensive data suite providing operational insights.
+- **Real-time Metrics:** FPS, System Latency, CPU/GPU Usage.
+- **Detection Trends:** Time-series charts showing detection frequency over 1h/6h/24h.
+- **Class Breakdown:** Pie charts showing distribution of detected objects (Person vs Vehicle vs Weapon).
+
+**Tech Used:** `Pandas` for data aggregation, `Streamlit Native Charts` (Altair) for interactive visualization, `Psutil` for hardware monitoring.
+
+![Analytics Screenshot](docs/screenshots/analytics.png)
+*(Placeholder: Upload screenshot of graphs and metrics)*
+
+### 4. ⚙️ Advanced Model Settings
+**Functionality:**
+Fine-tune the AI "Brain" without restarting the system.
+- **Confidence Threshold:** Slider to filter weak detections (0.0 - 1.0).
+- **NMS Threshold:** Adjustment for Non-Maximum Suppression to remove duplicate boxes.
+- **Tracking Parameters:** Max lost frames and IOU thresholds for DeepSORT.
+
+**Tech Used:** Dynamic parameter injection into running inference threads.
+
+### 5. 🏗️ Architecture & Tech Stack
+**Functionality:**
+Transparent documentation for engineers.
+- **Diagrams:** Interactive Mermaid.js/Graphviz flowcharts showing data pipeline.
+- **Dependency Checker:** Live status of installed libraries (PyTorch/CUDA versions).
+- **Reasoning:** "Why we chose this stack" comparison tables.
+
+**Tech Used:** `Graphviz` for diagrams, `json` for stack exports.
+
+### 6. 📝 System Logs & Export
+**Functionality:**
+A robust audit trail for mission debriefing.
+- **Live Console:** Auto-scrolling terminal output of all system events.
+- **Filtering:** Show only Errors, Warnings, or Info.
+- **Export:** Download logs as JSON, CSV, or TXT for external analysis.
+
+**Tech Used:** Custom logging handler, `Pandas` for CSV export, `st.text_area` for console view.
+
+![Logs Screenshot](docs/screenshots/logs.png)
+*(Placeholder: Upload screenshot of Log Viewer)*
+
+---
+
 ## 🏗️ System Architecture
 
 The system follows a modular, pipeline-based architecture designed for scalability and fault tolerance:
