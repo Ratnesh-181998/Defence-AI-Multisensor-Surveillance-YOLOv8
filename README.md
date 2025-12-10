@@ -48,12 +48,12 @@ Optimized for the **NVIDIA Jetson Orin AGX**, this system delivers real-time inf
 🚀 **Try it now:**
 - **Streamlit Profile** - https://share.streamlit.io/user/ratnesh-181998
 - **Project Demo** - https://defence-ai-multisensor-surveillance-yolov8-vusybzt9bohpykhzkq3.streamlit.app/
--Frontend: Streamlit + Custom CSS
--Detection: YOLOv8 + PyTorch + TensorRT
--Tracking: DeepSORT + Kalman Filter
--Processing: OpenCV + NumPy
--Enhancement: CLAHE + Dark Channel Prior
--Hardware: NVIDIA Jetson Orin AGX
+- **Frontend**: Streamlit + Custom CSS
+- **Detection**: YOLOv8 + PyTorch + TensorRT
+- **Tracking**: DeepSORT + Kalman Filter
+- **Processing**: OpenCV + NumPy
+- **Enhancement**: CLAHE + Dark Channel Prior
+- **Hardware**: NVIDIA Jetson Orin AGX
 ---
 ## ✨ Key Features
 
