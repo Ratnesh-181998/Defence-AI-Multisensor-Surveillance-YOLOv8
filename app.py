@@ -1392,15 +1392,8 @@ GPU: {health['gpu']}%
             log("Analytics reset", "WARNING")
             st.rerun()
 
-with tab_logs:
-    st.markdown("### 📝 System Logs")
-    create_log_viewer(st.session_state.logs)
-    
-    col1, col2 = st.columns([3, 1])
-    with col2:
-        if st.button("🗑️ Clear Logs", use_container_width=True):
-            st.session_state.logs = []
-            st.rerun()
+# Legacy log viewer removed - consolidated with main log viewer at bottom
+# (Lines 1395-1404 deleted)
 
 with tab_settings:
     st.markdown("## ⚙️ Advanced Model Settings")
